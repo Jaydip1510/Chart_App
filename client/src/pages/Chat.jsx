@@ -1,12 +1,21 @@
 import React, { Fragment, useRef } from 'react'
 import AppLayout from '../components/layout/AppLayout'
 import { IconButton, Stack } from '@mui/material';
-import { grayColor } from '../constants/color';
+import { grayColor, orange } from '../constants/color';
 import { AttachFile as AttachFileIcon, Send as SendIcon } from '@mui/icons-material';
 import { InputBox } from '../components/styles/StyledComponents';
+import FileMenu from '../components/dialogs/FileMenu';
+import { sampleMessage } from '../constants/SampleData';
+import MessageComponent from '../components/shared/MessageComponent';
+
+const user = {
+  _id:"sdfsdfsdf",
+  name:"jaydip makwana"
+}
 const Chat = () => {
 
   const containerRef = useRef(null);
+
   return (
     <Fragment>
       <Stack
@@ -21,7 +30,11 @@ const Chat = () => {
           overflow: "auto"
         }}
       >
-        {/* Messages Render */}
+       {
+          sampleMessage.map(i=>(
+            <MessageComponent key={i._id} message={i} user={user} />
+          ))
+       }
       </Stack>
        <form style={{
            height:"10%",
@@ -35,18 +48,38 @@ const Chat = () => {
        alignItems={"center"}
        position={"relative"}
        >
-          <IconButton>
+          <IconButton sx={{
+            position: "absolute",
+            left:"1.5rem",
+            rotate:"30deg",
+          }}
+          
+          >
             <AttachFileIcon/>
           </IconButton>
  
        <InputBox placeholder='Type Message Here...'/>
-       <IconButton>
+
+       <IconButton type='submit'
+        sx={{
+            rotate:"-30deg",
+            bgcolor:orange,
+            color:"white",
+            marginLeft:"1rem",
+            padding:"0.5rem",
+            "&:hover":{
+              bgcolor:"error.dark"
+            }
+        }}
+        >
          <SendIcon/>
        </IconButton>
 
 
        </Stack>
        </form>
+
+      <FileMenu/>
 
     </Fragment>
   )
