@@ -31,7 +31,7 @@ const Chat = () => {
         }}
       >
        {
-          sampleMessage.map((i)=>(
+          sampleMessage.map((i) => (
             <MessageComponent key={i._id} message={i} user={user} />
           ))
        }

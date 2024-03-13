@@ -46,7 +46,7 @@ const MessageComponent = ({ message, user }) => {
                   color: 'black',
                 }}
               >
-                  abhd
+                hello
                 {RenderAttachment(file, url)}
               </a>
             </Box>
